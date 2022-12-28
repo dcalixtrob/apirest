@@ -19,6 +19,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
     private UserDetailsService userDetailsService;
 
     private static final String[] AUTH_WHITELIST = {
+    		"/h2-console/**",
             "/v2/api-docs",
             "/swagger-resources",
             "/swagger-resources/**",
