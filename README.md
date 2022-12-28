@@ -2,9 +2,10 @@
 API Rest Technical Test Backend - UTP
 ## Acerca de
 Proyecto Maven, usando Sprint Boot y JWT
+IDE: Eclipse
 
 ## Iniciar proyecto
-Inicial la aplicacion con el pluggin de maven build (`mvn spring-boot:run`).
+Iniciar la aplicacion con el pluggin de maven build (`mvn spring-boot:run`).
 La aplicacion se ejecuta en la siguiente url [http://localhost:8090](http://localhost:8090).
 ```
 Paths: 
