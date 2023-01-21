@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fb01f998-3f52-44da-a67e-9845e8311615",
+		"_postman_id": "4e2fe0b6-f825-4694-b2ac-462e14e64953",
 		"name": "ApiNotas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"idAlumno\": \"0001\",\r\n    \"idCurso\": \"0002\",\r\n    \"nota\": \"14.0\"\r\n}",
+					"raw": "{\r\n    \"periodo\": \"202301\",\r\n    \"idAlumno\": \"A001\",\r\n    \"idCurso\": \"C001\",\r\n    \"idSeccion\": \"S001\",\r\n    \"tipoNota\": \"P2\",\r\n    \"nota\": \"14.0\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8090/notas/listar/0001",
+					"raw": "http://localhost:8090/notas/listar/A002",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -49,7 +49,7 @@
 					"path": [
 						"notas",
 						"listar",
-						"0001"
+						"A002"
 					]
 				}
 			},
@@ -65,7 +65,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"prueba\",\r\n    \"password\": \"prueba\",\r\n    \"nombre\": \"Prueba\",\r\n    \"idAlumno\": \"0001\"\r\n}",
+					"raw": "{\r\n    \"username\": \"usralumno\",\r\n    \"password\": \"prueba\",\r\n    \"codigo\": \"A001\",\r\n    \"tipo\":\"A\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -97,7 +97,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"prueba\",\r\n    \"password\": \"prueba\"\r\n}",
+					"raw": "{\r\n    \"username\": \"usralumno\",\r\n    \"password\": \"prueba\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -145,7 +145,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcnVlYmEiLCJleHAiOjE2NzMxMTgxODd9.FIeYvCsEHrvU6jzmn04Qk9Dy7ugf8ohf6Te3zzEC8vqyFKJjkqFO65LmV7yJ02CAoxfkRqSt3ROZ2eOAaBNfbA",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c3JhbHVtbm8iLCJleHAiOjE2NzUxMTUxNDF9.1_x06OnDTqrv7lQwwEfbiKIg9F6qC5s2lCdPF8VC7TWjoRw0dlBNE3EKkzwz41k1Bh5s4Bl1kfNA-Ki9CDo1eg",
 				"type": "string"
 			}
 		]

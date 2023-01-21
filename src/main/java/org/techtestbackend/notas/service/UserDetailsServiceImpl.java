@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.techtestbackend.notas.model.User;
+import org.techtestbackend.notas.domain.User;
 import org.techtestbackend.notas.repository.UserRepository;
 
 @Component

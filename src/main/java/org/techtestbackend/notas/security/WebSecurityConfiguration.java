@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -21,6 +22,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
     private static final String[] AUTH_WHITELIST = {
     		"/h2-console/**",
             "/v2/api-docs",
+            "/swagger-ui/**",
             "/swagger-resources",
             "/swagger-resources/**",
             "/configuration/ui",
@@ -37,10 +39,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
 
     protected void configure(HttpSecurity httpSecurity) throws Exception
     {
-        httpSecurity.cors().and().csrf().disable().authorizeRequests()
+        httpSecurity.headers().frameOptions().sameOrigin()
+        		.and().cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers(HttpMethod.POST, "/user/signup").permitAll()
                 .anyRequest().authenticated()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())
                 .and().addFilter(new AuthenticationFilter(authenticationManager()))
                 .addFilter(new AuthorizationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -62,5 +67,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+    
+    @Bean
+    public AuthenticationEntryPoint authenticationEntryPoint(){
+        return new CustomAuthenticationEntryPoint();
     }
 }
