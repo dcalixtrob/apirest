@@ -32,6 +32,9 @@ Se utiliza el Patron Repositoy en la capa de persistencia de modelo de dominio, 
 
 ## Modelo de BD
 
+Se genero este modelo de BD basico  en los q se plasman las entidades  principales Alumno, Docente, periodo , curso y seccion. En base a estas entidades se pueblan las demas tablas detalle PeriodoCursoSeccion, DocenteCursoSeccion y AlumnoCursoSeccion. Tambien se tiene la entidad RegistroNotas que para estas apis viene a ser el dominio principal del caso de uso. 
+
+
 ![Modelo de BD](document/ModeloBD.png)
 
 
