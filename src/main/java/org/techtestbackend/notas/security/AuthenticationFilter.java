@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -36,7 +38,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter
     {
         try
         {
-        	org.techtestbackend.notas.model.User creds = new ObjectMapper().readValue(request.getInputStream(), org.techtestbackend.notas.model.User.class);
+        	org.techtestbackend.notas.domain.User creds = new ObjectMapper().readValue(request.getInputStream(), org.techtestbackend.notas.domain.User.class);
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getUsername(), creds.getPassword(),new ArrayList<>()));
         }
         catch(IOException e)
@@ -45,7 +47,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter
         }
     }
 
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication)
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain, Authentication authentication) throws IOException
     {
     	
         String token = Jwts.builder()
@@ -54,5 +56,17 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter
                 .signWith(SignatureAlgorithm.HS512, SecurityConstant.TOKEN_SECRET)
                 .compact();
         response.addHeader("Authorization","Bearer " + token);
+        response.setContentType(MediaType.TEXT_PLAIN_VALUE);
+        response.getWriter().print(token);
+        response.getWriter().flush();
+    }
+    
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+        logger.info("Authentication failed");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType(MediaType.TEXT_PLAIN_VALUE);
+        response.getWriter().print(authException.getLocalizedMessage());
+        response.getWriter().flush();
     }
 }

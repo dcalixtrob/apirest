@@ -1,4 +1,4 @@
-package org.techtestbackend.notas.model;
+package org.techtestbackend.notas.domain;
 
 import java.util.Date;
 

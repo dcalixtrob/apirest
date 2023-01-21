@@ -6,6 +6,7 @@ spring.datasource.username: sa
 spring.datasource.password: password
 spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 spring.h2.console.enabled: true
+spring.h2.console.settings.web-allow-others: true
 
 spring.jpa.show-sql: true
 spring.jpa.properties.hibernate.format_sql: true
@@ -14,6 +15,11 @@ spring.jackson.deserialization.FAIL_ON_UNKNOWN_PROPERTIES: true
 spring.jackson.default-property-inclusion: non_null
 
       
-logging:
-  level:
-    root: DEBUG
+#logging:
+#  level:
+#    root: DEBUG
+    
+spring:
+    mvc:
+      pathmatch:
+            matching-strategy: ant_path_matcher
